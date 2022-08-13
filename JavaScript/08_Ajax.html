@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Basic Ajax Learnings</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function loadData() {
+        let url = "https://jsonplaceholder.typicode.com/todos";
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", url, true);
+        //1 -> HTTP Method, 2 -> BackEndURL -> url, Async -> true
+        xmlhttp.send();
+
+        xmlhttp.onreadystatechange = () => {
+          //xmlhttp.readyState -> 0, 1, 2, 3, 4
+          //xmlhttp.status -> 1xx, 2xx, 3xx, 4xx, 5xx
+          if ((xmlhttp.readyState === 4 && xmlhttp.status) === 200) {
+            
+            let todos = JSON.parse(xmlhttp.response);
+
+            let htmlMapDataStringArr = todos.map((todo) => {
+              return `
+                    <tr>
+                        <td>${todo.id}</td>
+                        <td>${todo.userId}</td>
+                        <td>${todo.title}</td>
+                        <td>${todo.completed}</td>
+                    </tr>
+                `;
+            });
+            console.log("Data Received is:- ", htmlMapDataStringArr.join(""));
+            let tableBody = document.getElementById("tBody");
+            tableBody.innerHTML = htmlMapDataStringArr.join("");
+          }
+        };
+      }
+    </script>
+    <body>
+      <div class="container mt-3">
+        <h1>Ajax Demo</h1>
+        <button class="btn btn-primary m-3" onclick="loadData()">
+          Load Data
+        </button>
+        <table class="table table-striped">
+          <thead>
+            <th>UserId</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Is Completed?</th>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
+      </div>
+    </body>
+  </head>
+</html>
