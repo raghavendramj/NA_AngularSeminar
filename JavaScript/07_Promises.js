@@ -50,14 +50,14 @@ addPromise([20, 5])
   .then(
     (numsArray) => {
       console.log("Addition successful ", numsArray);
-      multiplyPromise(numsArray);
+      return multiplyPromise(numsArray);
     },
     (error) => console.log("Error occurred :- ", error)
   )
   .then(
     (numsArray) => {
       console.log("Multiplication successful ", numsArray);
-      subtractPromise(numsArray);
+      return subtractPromise(numsArray);
     },
     (error) => console.log("Error occurred :- ", error)
   )

@@ -1,0 +1,8 @@
+<div class="container m-3">
+  <div>
+    <label for="content" class="form-label">Parent Component :- </label>
+    <input type="text" class="form-control" [(ngModel)]="inputMsg" [value]="inputMsg"/>
+
+    <app-child [childMsg]="inputMsg"></app-child>
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container mt-3">
+    <h1>This is from Home component</h1>
+
+    <div class="form-group col-8">
+        <h3>Property Binding</h3>
+        <p>{{ message }}</p>
+        <label for="username" class="form-label">Username :- </label>
+        <input type="text" name="username" class="form-control" [disabled]="isDisabled"
+            placeholder="Enter your username" />
+        <br />
+     
+        <input type="email" class="form-control" [value]="myEmail" placeholder="Enter your email" />
+        <h3>Event Binding</h3>
+        <button class="btn btn-primary mt-3" (click)="enableUsername()">
+            Disable Username Field
+        </button>
+        <div>
+            <p><b>Class Binding -Only one class</b></p>
+            <p [class]="bolderText">This text is styled using CLASS Binding</p>
+        </div>
+    </div>
+</div>
